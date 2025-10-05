@@ -1,1 +1,59 @@
-<p>cart.page works!</p>
+<div class="container" *ngIf="cart.items().length; else empty">
+    <h1 class="h3 fw-bold mb-4">Warenkorb</h1>
+
+    <div *ngFor="let i of cart.items()" class="row align-items-center border-bottom py-3 g-2">
+      <div class="col-2 col-md-1">
+        <img [src]="i.product.imageUrl" class="img-fluid rounded" alt="">
+      </div>
+
+      <div class="col-6 col-md-5">
+        <div class="fw-semibold">{{ i.product.name }}</div>
+        <div class="text-muted small">{{ i.product.price | price }}</div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="input-group">
+          <button class="btn btn-outline-secondary" type="button"
+                  (click)="dec(i.product.id, i.qty)">−</button>
+          <input type="number" min="1" class="form-control text-center"
+                 [value]="i.qty"
+                 (change)="onQtyInput(i.product.id, $event)">
+          <button class="btn btn-outline-secondary" type="button"
+                  (click)="inc(i.product.id, i.qty)">+</button>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3 text-md-end mt-2 mt-md-0">
+        <div class="fw-semibold">{{ (i.product.price * i.qty) | price }}</div>
+        <button class="btn btn-link text-danger p-0 mt-1"
+                (click)="remove(i.product.id, i.product.name)">Entfernen</button>
+      </div>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <span>Zwischensumme</span><span>{{ cart.subtotal() | price }}</span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>Versand</span><span>{{ cart.shipping() | price }}</span>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between fw-bold">
+          <span>Total</span><span>{{ cart.total() | price }}</span>
+        </div>
+
+        <div class="d-flex gap-2 mt-3">
+          <a routerLink="/" class="btn btn-outline-secondary">Weiter einkaufen</a>
+          <a routerLink="/checkout" class="btn btn-primary">Zur Kasse</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #empty>
+    <div class="container text-center py-5">
+      <h2 class="h4 mb-3">Dein Warenkorb ist leer</h2>
+      <a routerLink="/" class="btn btn-outline-primary">Produkte ansehen</a>
+    </div>
+  </ng-template>

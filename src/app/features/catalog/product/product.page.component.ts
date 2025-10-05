@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { ApiService } from '../../../core/services/api.service';
 import { CartService } from '../../../core/services/cart.service';
+import { ToastService } from '../../../core/services/toast.service';
 import { PricePipe } from '../../../shared/pipes/price.pipes';
 import { inject } from '@angular/core';
 
@@ -13,10 +14,12 @@ import { inject } from '@angular/core';
   templateUrl: './product.page.component.html',
   styleUrl: './product.page.component.css'
 })
+
 export class ProductPageComponent {
   private route = inject(ActivatedRoute);
   private api = inject(ApiService);
   private cart = inject(CartService);
+  private toast = inject(ToastService);
 
   product: any;
 
@@ -26,9 +29,9 @@ export class ProductPageComponent {
   }
 
   add() {
-    if (this.product) this.cart.add(this.product, 1);
+    if (this.product) {
+      this.cart.add(this.product, 1);
+      this.toast.show(`${this.product.name} wurde in den Warenkorb gelegt.`, 'success');
+    }
   }
-
-
-
 }
