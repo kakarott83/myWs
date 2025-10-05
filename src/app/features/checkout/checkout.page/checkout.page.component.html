@@ -1,0 +1,89 @@
+<div class="container" *ngIf="hasItems(); else empty">
+    <h1 class="h3 fw-bold mb-4">Checkout</h1>
+
+    <div class="row g-4">
+      <!-- Liefer-/Kundendaten -->
+      <div class="col-lg-7">
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Vorname</label>
+            <input class="form-control" formControlName="firstName"
+                   [class.is-invalid]="invalid('firstName')"/>
+            <div class="invalid-feedback">Bitte Vornamen eingeben.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Nachname</label>
+            <input class="form-control" formControlName="lastName"
+                   [class.is-invalid]="invalid('lastName')"/>
+            <div class="invalid-feedback">Bitte Nachnamen eingeben.</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label">E-Mail</label>
+            <input class="form-control" formControlName="email"
+                   [class.is-invalid]="invalid('email')"/>
+            <div class="invalid-feedback">Bitte gültige E-Mail eingeben.</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Adresse</label>
+            <input class="form-control" formControlName="address"
+                   [class.is-invalid]="invalid('address')"/>
+            <div class="invalid-feedback">Bitte Adresse eingeben.</div>
+          </div>
+
+          <!-- Zahlungsart (Dummy) -->
+          <div class="col-12">
+            <label class="form-label d-block">Zahlungsart</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="pay1" formControlName="payment" value="card">
+              <label class="form-check-label" for="pay1">Kredit-/Debitkarte (Demo)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="pay2" formControlName="payment" value="invoice">
+              <label class="form-check-label" for="pay2">Rechnung (Demo)</label>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-primary" [disabled]="form.invalid">Jetzt bezahlen (Demo)</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Zusammenfassung -->
+      <div class="col-lg-5">
+        <div class="card">
+          <div class="card-header fw-semibold">Bestellübersicht</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let i of cart.items()">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div class="fw-semibold">{{ i.product.name }}</div>
+                  <div class="text-muted small">x{{ i.qty }}</div>
+                </div>
+                <div>{{ (i.product.price * i.qty) | price }}</div>
+              </div>
+            </li>
+          </ul>
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <span>Zwischensumme</span><span>{{ cart.subtotal() | price }}</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Versand</span><span>{{ cart.shipping() | price }}</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between fw-bold">
+              <span>Total</span><span>{{ cart.total() | price }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #empty>
+    <div class="container text-center py-5">
+      <h2 class="h4 mb-3">Dein Warenkorb ist leer</h2>
+      <a routerLink="/" class="btn btn-outline-primary">Zurück zum Shop</a>
+    </div>
+  </ng-template>
