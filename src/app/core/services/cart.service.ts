@@ -9,6 +9,11 @@ export class CartService {
   readonly subtotal = computed(() => this.items().reduce((s,i)=> s + i.product.price * i.qty, 0));
   readonly shipping = computed(() => (this.subtotal() > 5000 ? 0 : 499));
   readonly total = computed(() => this.subtotal() + this.shipping());
+  readonly count = computed(() => this.items().reduce((n,i)=> n + i.qty, 0)); // 👈 NEU
+  readonly displayCount = computed(() => {
+    const c = this.count();
+    return c > 9 ? '9+' : String(c);
+  });
 
   add(p: Product, qty = 1) {
     const m = { ...this.itemsSig() };

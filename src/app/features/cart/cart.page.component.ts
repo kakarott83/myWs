@@ -30,7 +30,7 @@ export class CartPageComponent {
   remove(id: string, name: string) {
     if(id) {
       this.cart.remove(id);
-      this.toast.show(`${name} wurde in den Warenkorb gelegt.`, 'success');
+      this.toast.show(`${name} wurde aus den Warenkorb entfernt.`, 'danger');
     }
   }
 }

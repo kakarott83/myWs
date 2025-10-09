@@ -1,3 +1,7 @@
 footer {
     background: #f8f9fa;
-  }
+}
+
+.btn.position-relative .badge {
+  transform: translate(-30%, -40%); /* Feintuning, falls gewünscht */
+}
