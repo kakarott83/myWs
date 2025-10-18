@@ -1,7 +1,11 @@
 {
     "products": [
-      { "id": "p1", "name": "T-Shirt Schwarz", "description": "Klassisches Shirt", "price": 1999, "imageUrl": "https://picsum.photos/id/21/600/400", "stock": 20 },
-      { "id": "p2", "name": "Hoodie Grau", "description": "Bequem & warm", "price": 4999, "imageUrl": "https://picsum.photos/id/22/600/400", "stock": 15 },
-      { "id": "p3", "name": "Cap Navy", "description": "Unisex Cap", "price": 2499, "imageUrl": "https://picsum.photos/id/23/600/400", "stock": 30 }
+      { "id": "p1", "name": "T-Shirt Schwarz", "description": "Klassisches Shirt", "price": 1999, "imageFront": "assets/frau_mit_armreif.webp", "imageBack": "assets/armreif.png", "stock": 20 }
+      
+    ],
+    "rest": [
+      { "id": "p2", "name": "Hoodie Grau", "description": "Bequem & warm", "price": 4999, "imageFront": "https://picsum.photos/id/22/600/400", "imageBack": "https://picsum.photos/id/21/600/400", "stock": 15 },
+      { "id": "p3", "name": "Cap Navy", "description": "Unisex Cap", "price": 2499, "imageFront": "https://picsum.photos/id/23/600/400", "imageBack": "https://picsum.photos/id/21/600/400", "stock": 30 }
     ]
-  }
+
+}

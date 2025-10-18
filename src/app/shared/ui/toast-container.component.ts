@@ -23,10 +23,9 @@ import { ToastService } from '../../core/services/toast.service';
     .app-toast {
       pointer-events: auto;
       opacity: 0;
-      transform: translateY(-10px);
-      transition:
-        opacity 1s ease,           /* Dauer ↑ */
-        transform 1s ease;         /* Dauer ↑ */
+      /*transform: translateY(-10px);*/
+      transform: translateY(12px);
+      transition: opacity .35s ease, transform .35s ease;
       min-width: 260px;
       border-radius: 0.5rem;
       color: #fff;

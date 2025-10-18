@@ -1,0 +1,25 @@
+:root { --nav-h: 70px; }
+/*.navbar-desert {
+  position: sticky; top: 0; z-index: 1030;
+  background: #000; color:#fff; transition: background .25s ease, box-shadow .25s ease;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.navbar-desert .navbar-brand, .navbar-desert .nav-link { color:#fff; font-weight:600; }
+.navbar-desert .nav-link:hover { color: var(--clr-accent); }
+.navbar-desert.scrolled { box-shadow: 0 4px 18px rgba(0,0,0,.25); }
+*/
+
+  /* Navigation */
+  .navbar-desert {
+    background: linear-gradient(
+      90deg,
+      #EED9B9 0%,       /* heller Sandton */
+      #C56D46 100%      /* Rust Ridge */
+    );
+    color: #fff;
+    border: 0;
+  }
+  
+  .navbar-desert .nav-link { color: #fff; }
+  .navbar-desert .nav-link:hover { color: var(--clr-accent); }
+  .navbar-desert .btn { background: #fff; color: var(--clr-primary); }

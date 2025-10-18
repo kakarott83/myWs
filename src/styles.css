@@ -1,3 +1,201 @@
 /* You can add global styles to this file, and also import other style files */
-:root { color-scheme: light; }
-body { background: #f8f9fa; }
+:root { 
+  
+  /* Eine Quelle der Wahrheit */
+  --font-base: 'Raleway', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  /* Bootstrap global überschreiben */
+  -bs-font-sans-serif: var(--font-base);
+  --bs-body-font-family: var(--font-base);
+  
+  color-scheme: light; 
+
+      /* Grundfarben */
+  --clr-primary:  #C56D46; /* Rust Ridge */
+  --clr-secondary:#6A611B; /* Desert Sage */
+  --clr-dark:     #4D4617; /* Canyon Shadow */
+  --clr-accent:   #FECF97; /* Sunflare Sandstone */
+  --clr-danger:   #6A2A11; /* Redrock Ember */
+
+  /* Neutrale */
+  --clr-body-bg:  #FCFAF7;
+  --clr-body:     #2B241A;
+  --clr-muted:    #7A6E5F;
+
+  /* Abgeleitete Töne (Transparenzen) */
+  --clr-primary-10: rgba(197,109,70,.10);
+  --clr-secondary-10: rgba(106,97,27,.10);
+
+  /* Bootstrap 5 Theme Tokens (überschreiben) */
+  --bs-body-bg: var(--clr-body-bg);
+  --bs-body-color: var(--clr-body);
+  --bs-link-color: var(--clr-primary);
+  --bs-link-hover-color: #a75433;
+
+  --bs-primary:   var(--clr-primary);
+  --bs-secondary: var(--clr-secondary);
+  --bs-warning:   var(--clr-accent);
+  --bs-danger:    var(--clr-danger);
+  --bs-dark:      var(--clr-dark);
+
+  /* Buttons (optional, schöneres Contrast/Hover) */
+  --bs-btn-font-weight: 600;
+  --bs-btn-border-radius: .6rem;
+}
+
+html, body { 
+  height: 100%; 
+  font-family: var(--font-base);
+  font-weight: 400;
+  letter-spacing: 0.01em; /* minimal – wirkt wie „Above“ */
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;   /* macht die Seite zur Spalte */
+  background: linear-gradient(
+    180deg,
+    #FCFAF7 0%,        /* heller Sand */
+    #F9E8D4 50%,       /* leicht warm */
+    #F1C9A3 100%       /* sanft orange, Rust Ridge getönt */
+  );
+  color: var(--clr-body);
+}
+
+/* Überschriften sollen NICHT auf eine andere Schrift fallen */
+h1, h2, h3, h4, h5, h6 { 
+  font-family: inherit; 
+  font-weight: 600;      /* knackigere Headlines */
+}
+
+/* Sicherheitshalber: Komponenten erben die Schrift (falls Theme/Lib was setzt) */
+.btn, .navbar, .dropdown-menu, .badge, .alert, .card, 
+.form-control, .form-select, .input-group-text, .toast, .modal, .table {
+  font-family: inherit;
+}
+
+
+/* Falls dein <app-root> der Shell-Wrapper ist: */
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Der Inhaltsbereich füllt den Rest, Footer rutscht nach unten */
+main, .page-content {
+  flex: 1 1 auto;
+}
+
+/* Footer bleibt kompakt */
+.footer-desert {
+  padding: .6rem 0;        /* Höhe klein halten */
+  margin-top: 0;           /* kein zusätzlicher Abstand nach oben */
+  flex-shrink: 0;          /* Footer nicht zusammendrücken */
+}
+
+
+/* Karten, Panels, Sektionen */
+.section-hero {
+    background: linear-gradient(180deg, var(--clr-secondary) 0%, var(--clr-dark) 100%);
+    color: #fff;
+  }
+  .card {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  }
+  .card-header {
+    background: var(--clr-primary-10);
+    color: var(--clr-dark);
+    font-weight: 600;
+  }
+  
+  /* Buttons Feinheiten */
+  .btn-primary {
+    background-color: var(--clr-primary);
+    border-color: var(--clr-primary);
+  }
+
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: #a75433;
+    border-color: #a75433;
+  }
+  .btn-secondary {
+    background-color: var(--clr-secondary);
+    border-color: var(--clr-secondary);
+  }
+  .btn-secondary:hover {
+    background-color: #514a19;
+    border-color: #514a19;
+  }
+  
+  /* Badges (z. B. Warenkorb) */
+  .badge-cart {
+    background: var(--clr-secondary);
+    color: #fff;
+    border: 2px solid var(--clr-body-bg);
+  }
+  
+  /* Formulare */
+  .form-control:focus {
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 0 .25rem var(--clr-primary-10);
+  }
+  
+  /* Alerts / Toasts */
+  .alert-accent {
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    border: 0;
+  }
+  .toast-desert {
+    --bs-toast-bg: #fff;
+    --bs-toast-border-color: var(--clr-primary-10);
+    --bs-toast-header-bg: var(--clr-primary-10);
+    --bs-toast-header-color: var(--clr-dark);
+    border-radius: .9rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,.12);
+  }
+
+  
+  /* Preise / Labels */
+  .price {
+    color: var(--clr-dark);
+    font-weight: 700;
+  }
+  .label-accent {
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    padding: .15rem .5rem;
+    border-radius: .4rem;
+  }
+  
+  /* Footer */
+  .footer-desert {
+    background: #EBD5B8; /* oder dein Verlaufston */
+    color: var(--clr-dark);
+    font-size: 0.9rem;
+    padding: 0.6rem 0;          /* vorher war wahrscheinlich 1–2rem */
+    border-top: 1px solid rgba(0,0,0,.05);
+  }
+  
+  .footer-desert .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0; /* entfernt zusätzliches Bootstrap-Innenpadding */
+  }
+  
+  .footer-desert a {
+    color: var(--clr-secondary);
+    text-decoration: none;
+  }
+  
+  .footer-desert a:hover {
+    color: var(--clr-primary);
+    text-decoration: underline;
+  }

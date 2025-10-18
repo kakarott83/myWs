@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<!--nav class="navbar navbar-expand-lg navbar-desert px-3">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="../assets/logo_demo.svg" width="30" height="30" class="d-inline-block align-text-top">
+    <a class="navbar-brand fw-bold" href="#">
+      <img src="assets/logo_demo.svg" width="30" height="30" class="d-inline-block align-text-top">
       Bootstrap
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,12 +31,11 @@
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a routerLink="/cart" class="btn btn-outline-secondary position-relative">
+          <a routerLink="/cart" class="btn btn-primary position-relative">
             Warenkorb
-            <!-- Badge nur zeigen, wenn > 0 -->
             <span *ngIf="cart.count() > 0"
                   class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {{ cart.count() }} <!-- oder: {{ cart.displayCount() }} -->
+              {{ cart.count() }}
               <span class="visually-hidden">Artikel im Warenkorb</span>
             </span>
           </a>
@@ -44,14 +43,67 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav-->
+
+<!--nav class="navbar navbar-expand-lg navbar-desert px-3">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" routerLink="/">DesertStore</a>
+
+    <button class="navbar-toggler text-white" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navbarMain"
+      aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarMain">
+      <ul class="navbar-nav align-items-center gap-4">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Wir</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">Philosophie</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Produkte
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="/shop">Produkte</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <a routerLink="/cart" class="btn btn-primary position-relative">
+        Warenkorb
+        <span *ngIf="cart.count() > 0"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          {{ cart.count() }}
+          <span class="visually-hidden">Artikel im Warenkorb</span>
+        </span>
+      </a>
+    </div>
+
+  </div>
+</nav-->
+
+
+
+<app-navbar></app-navbar>
 
 <main class="py-4">
   <router-outlet></router-outlet>
   <app-toast-container></app-toast-container>
 </main>
 
-<footer class="text-center text-muted py-5">
-  © {{ year }} Demo-Shop • Angular + Bootstrap
+<!-- Footer -->
+<footer class="footer-desert">
+  <div class="container">
+    <span>© 2025 DesertStore</span>
+    <a href="#">Impressum</a>
+  </div>
 </footer>
 

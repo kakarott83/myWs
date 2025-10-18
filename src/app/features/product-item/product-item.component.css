@@ -1,0 +1,31 @@
+.image-hover {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .image-hover img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.5s ease;
+  }
+  
+  .image-hover .image-hovered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
+  /* Beim Hover: zweites Bild einblenden */
+  .image-hover:hover .image-hovered {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  
+  /* Optional: erstes Bild leicht ausblenden beim Hover */
+  .image-hover:hover .image-default {
+    opacity: 0;
+  }
