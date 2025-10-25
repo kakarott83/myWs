@@ -1,17 +1,22 @@
-<div class="container" *ngIf="product as p; else loading">
-    <div class="row g-4 align-items-start">
-      <div class="col-md-6">
-        <img [src]="p.imageUrl" class="img-fluid rounded" alt="">
+<div class="container product-detail" *ngIf="product as item; else loading">
+  <div class="row g-4 justify-content-center text-center">
+    <div class="col-md-6">
+      <div class="image-hover">
+        <img class="image-default" [src]="item.imageFront" [alt]="item.name">
+        <img class="image-hovered" [src]="item.imageBack" [alt]="item.name + ' Detail'">
       </div>
-      <div class="col-md-6">
-        <h1 class="h3 fw-bold">{{ p.name }}</h1>
-        <div class="text-muted mb-3">{{ p.price | price }}</div>
-        <p class="mb-4">{{ p.description }}</p>
-        <button class="btn btn-primary" (click)="add()">In den Warenkorb</button>
-      </div>
+
+      <h1 class="h3 fw-bold mt-3">{{ item.name }}</h1>
+      <div class="text-muted mb-2">{{ item.price | price }}</div>
+      <p class="mb-4">{{ item.description }}</p>
+
+      <button class="btn btn-primary add-to-cart" (click)="add()">
+        In den Warenkorb
+      </button>
     </div>
   </div>
+</div>
 
-  <ng-template #loading>
-    <div class="container text-muted py-5">Lade Produkt …</div>
-  </ng-template>
+<ng-template #loading>
+  <div class="container text-muted py-5 text-center">Lade Produkt …</div>
+</ng-template>

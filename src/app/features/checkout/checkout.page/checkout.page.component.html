@@ -29,23 +29,74 @@
                    [class.is-invalid]="invalid('address')"/>
             <div class="invalid-feedback">Bitte Adresse eingeben.</div>
           </div>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-4">
+                <label class="form-label">Plz</label>
+                <input class="form-control" formControlName="zip"
+                       [class.is-invalid]="invalid('zip')"/>
+                <div class="invalid-feedback">Bitte Adresse eingeben.</div>
+              </div>
+              <div class="col-8">
+                <label class="form-label">Ort</label>
+                <input class="form-control" formControlName="city"
+                       [class.is-invalid]="invalid('city')"/>
+                <div class="invalid-feedback">Bitte Adresse eingeben.</div>
+              </div>
+            </div>
+          </div>
 
           <!-- Zahlungsart (Dummy) -->
-          <div class="col-12">
-            <label class="form-label d-block">Zahlungsart</label>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" id="pay1" formControlName="payment" value="card">
-              <label class="form-check-label" for="pay1">Kredit-/Debitkarte (Demo)</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" id="pay2" formControlName="payment" value="invoice">
-              <label class="form-check-label" for="pay2">Rechnung (Demo)</label>
-            </div>
+          <div class="mb-2 fw-semibold">Zahlungsart</div>
+
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="payment"
+              id="paymentPaypal"
+              value="paypal"
+              formControlName="payment"
+            />
+            <label class="form-check-label d-flex align-items-center gap-2" for="paymentPaypal">
+              <img src="assets/logo/paypal-logo.png" alt="PayPal" height="24">
+            </label>
+          </div>
+          
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="payment"
+              id="paymentKlarna"
+              value="klarna"
+              formControlName="payment"
+            />
+            <label class="form-check-label d-flex align-items-center gap-2" for="paymentKlarna">
+              <img src="assets/logo/klarna-logo.svg" alt="Klarna" height="24">
+            </label>
           </div>
 
-          <div class="col-12">
-            <button class="btn btn-primary" [disabled]="form.invalid">Jetzt bezahlen (Demo)</button>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="payment"
+              id="paymentCredit"
+              value="credit"
+              formControlName="payment"
+            />
+            <label class="form-check-label d-flex align-items-center gap-2" for="paymentCredit">
+              <img src="assets/logo/creditcard.svg" alt="Credit" height="24">
+            </label>
           </div>
+
+          
+          <button type="submit" (click)="onCheckout()" class="btn btn-primary btn-lg w-100 mt-3 d-flex align-items-center justify-content-center gap-2">
+            <img src="assets/logo/checkout-confirm.svg" alt="" height="20">
+            <span>Zahlungspflichtig bestellen</span>
+          </button>
         </form>
       </div>
 

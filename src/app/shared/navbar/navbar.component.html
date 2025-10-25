@@ -1,48 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-desert px-3">
-    <div class="container-fluid">
-  
-      <!-- 🔹 LINKS -->
-      <a class="navbar-brand" routerLink="/">DesertStore</a>
-  
-      <!-- 🔹 BURGER -->
-      <button class="navbar-toggler text-white" type="button"
-        data-bs-toggle="collapse" data-bs-target="#navbarMain"
-        aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <!-- 🔹 NAVIGATION -->
-      <div class="collapse navbar-collapse justify-content-center" id="navbarMain">
-        <ul class="navbar-nav align-items-center gap-4">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/">Wir</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/about">Philosophie</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-               data-bs-toggle="dropdown" aria-expanded="false">
-              Produkte
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/shop">Produkte</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-  
-      <!-- 🔹 RECHTS: Warenkorb -->
-      <div class="d-flex align-items-center">
-        <a routerLink="/cart" class="btn btn-primary position-relative">
-          Warenkorb
-          <span *ngIf="cart.count() > 0"
-                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-            {{ cart.count() }}
-            <span class="visually-hidden">Artikel im Warenkorb</span>
-          </span>
-        </a>
-      </div>
-  
-    </div>
-  </nav>
+<nav class="nav-tree" aria-label="Hauptnavigation">
+  <ng-container *ngFor="let item of items()">
+    <ng-container [ngTemplateOutlet]="nodeTpl" [ngTemplateOutletContext]="{ $implicit: item, depth: 0 }"></ng-container>
+  </ng-container>
+</nav>
+
+<ng-template #nodeTpl let-node let-depth="depth">
+  <div class="node" [style.marginLeft.px]="depth * 12">
+    <button *ngIf="node.children?.length"
+            class="btn-toggle nav-item"
+            type="button"
+            (click)="toggle(node)"
+            [attr.aria-expanded]="isExpanded(node)"
+            [attr.aria-label]="node.label">
+      <span class="chevron" [class.rotate]="isExpanded(node)">›</span>
+      {{ node.label }}
+    </button>
+
+    <a *ngIf="!node.children?.length"
+       class="nav-item"
+       routerLinkActive="active"
+       [routerLink]="node.link">{{ node.label }}</a>
+  </div>
+
+  <div *ngIf="node.children?.length && isExpanded(node)" class="children">
+    <ng-container *ngFor="let c of node.children">
+      <ng-container [ngTemplateOutlet]="nodeTpl" [ngTemplateOutletContext]="{ $implicit: c, depth: depth + 1 }"></ng-container>
+    </ng-container>
+  </div>
+</ng-template>

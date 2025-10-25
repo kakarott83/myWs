@@ -1,0 +1,48 @@
+/* Zentriert den gesamten Inhalt */
+.product-detail {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  
+  /* Bild-Container mit Hover-Effekt */
+  .image-hover {
+    position: relative;
+    width: 350px;        /* oder 100% */
+    max-width: 100%;
+    aspect-ratio: 4 / 3; /* Höhe wird daraus berechnet (z. B. 4:3 oder 16:9) */
+    margin: 0 auto 1rem;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .image-default,
+  .image-hovered {
+    position: absolute;
+    inset: 0;            /* top/right/bottom/left: 0 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+  }
+  
+  .image-hovered { opacity: 0; }
+  .image-hover:hover .image-hovered { opacity: 1; }
+  .image-hover:hover .image-default { opacity: 0; }
+  
+  
+  /* Button gleich breit wie das Bild */
+  .add-to-cart {
+    width: 350px;               /* gleiche Breite wie das Bild */
+    max-width: 100%;
+    background-color: #c86b44;
+    border: none;
+    color: white;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #a95533;
+  }

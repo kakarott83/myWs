@@ -1,0 +1,8 @@
+.products-container {
+    display: flex;
+    justify-content: center;      /* Zentriert horizontal */
+    align-items: flex-start;
+    flex-wrap: wrap;              /* Bricht um bei kleinen Bildschirmen */
+    gap: 21rem;                    /* Abstand zwischen Karten */
+    padding: 2rem;
+  }

@@ -1,0 +1,35 @@
+/* Wrapper */
+.about{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+  .about::after{ content:""; display:block; clear:both; } /* clearfix */
+  
+  /* Bild rechts floaten */
+  .about__img{
+    display:block;
+    width: min(42%, 420px);
+    border-radius: 10px;
+  }
+  .about__img--right{
+    float: right;                 /* ← hier ist der Unterschied */
+    margin: 0 0 1rem 1.5rem;      /* Abstand links/unten zum Text */
+  }
+  
+  /* Text (optional Blocksatz) */
+  .about__text p{
+    margin: 0 0 1rem;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  
+  /* Mobile: Float auflösen */
+  @media (max-width: 768px){
+    .about__img--right{
+      float: none;
+      width: 100%;
+      margin: 0 0 1rem 0;
+    }
+}
+  

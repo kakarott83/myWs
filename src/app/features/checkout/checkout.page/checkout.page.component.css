@@ -1,0 +1,20 @@
+.form-check-label img {
+    height: 24px;
+    object-fit: contain;
+  }
+  
+  .form-check:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+  }
+
+  button.btn img {
+    filter: brightness(0) invert(1); /* macht das Icon weiß auf farbigem Button */
+    opacity: 0.9;
+    transition: transform .2s ease;
+  }
+  button.btn:hover img {
+    transform: scale(1.05);
+  }

@@ -1,21 +1,19 @@
-<div class="container">
-    <h1 class="h3 fw-bold mb-4">Produkte</h1>
-
-    <div class="row g-3" *ngIf="products().length; else empty">
-      <div class="col-6 col-md-4 col-lg-3" *ngFor="let p of products()">
-        <a [routerLink]="['/product', p.id]" class="text-decoration-none text-body">
-          <div class="card h-100">
-            <img [src]="p.imageUrl" class="card-img-top" alt="">
-            <div class="card-body">
-              <h2 class="h6 card-title mb-1">{{ p.name }}</h2>
-              <p class="card-text text-muted small mb-0">{{ p.price | price }}</p>
-            </div>
-          </div>
-        </a>
-      </div>
+<div class="products-container container">
+  <div
+    class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center"
+    *ngIf="products().length; else empty"
+  >
+    <div class="col" *ngFor="let p of filteredProducts()">
+      <app-product-item class="h-100 d-flex" [item]="p"></app-product-item>
     </div>
-
-    <ng-template #empty>
-      <div class="text-muted">Keine Produkte gefunden.</div>
-    </ng-template>
   </div>
+
+  <ng-template #empty>
+    <div class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div>Produkte werden geladen...</div>
+    </div>
+  </ng-template>
+</div>

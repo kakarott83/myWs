@@ -1,0 +1,33 @@
+/* Der Wrapper darf KEIN flex/grid sein */
+.about { 
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+  .about::after { content:""; display:block; clear:both; }  /* clearfix */
+  
+  /* Bild links „schwimmen“ lassen */
+  .about__img {
+    float: left;
+    width: min(42%, 420px);     /* Breite anpassen */
+    margin: 0 1.5rem 1rem 0;    /* Abstand zum Text */
+    border-radius: 8px;
+    opacity: .9;                /* optional */
+    display: block;
+  }
+  
+  /* Textabsätze (Blocksatz optional) */
+  .about__text p {
+    margin: 0 0 1rem;
+    text-align: justify; 
+    text-justify: inter-word;
+  }
+  
+  /* Mobile: Float auflösen, Bild volle Breite */
+  @media (max-width: 768px) {
+    .about__img { 
+      float: none; 
+      width: 100%; 
+      margin: 0 0 1rem 0;
+    }
+  }

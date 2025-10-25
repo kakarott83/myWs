@@ -62,6 +62,8 @@ body {
     #F1C9A3 100%       /* sanft orange, Rust Ridge getönt */
   );
   color: var(--clr-body);
+  background-repeat: no-repeat;
+  background-attachment: fixed;   /* optional: Verlauf bleibt beim Scrollen „ruhig“ */
 }
 
 /* Überschriften sollen NICHT auf eine andere Schrift fallen */
@@ -91,9 +93,11 @@ main, .page-content {
 
 /* Footer bleibt kompakt */
 .footer-desert {
-  padding: .6rem 0;        /* Höhe klein halten */
-  margin-top: 0;           /* kein zusätzlicher Abstand nach oben */
-  flex-shrink: 0;          /* Footer nicht zusammendrücken */
+  margin-top: auto;              /* <- der Trick */
+  border-top: 1px solid rgba(0,0,0,.1);
+  padding: 1rem;
+  text-align: center;
+  background: #fff;              /* oder dein Verlauf */
 }
 
 

@@ -1,0 +1,41 @@
+<header class="menu">
+    <!-- Links: Logo -->
+    <div class="menu__left">
+      <a class="logo" [routerLink]="homeLink" aria-label="Startseite">
+        <img *ngIf="logoSrc" [src]="logoSrc" alt="Logo" />
+        <span *ngIf="!logoSrc" class="logo-fallback">•</span>
+      </a>
+    </div>
+  
+    <!-- Mitte: Brand/Name -->
+    <div class="menu__center">
+      <a class="brand" [routerLink]="homeLink">{{ brand }}</a>
+    </div>
+  
+    <!-- Rechts: Suche, Favoriten, Warenkorb -->
+    <div class="menu__right">
+      <form class="search" (ngSubmit)="onSubmit()" role="search" aria-label="Shop durchsuchen">
+        <input
+          class="search__input"
+          type="search"
+          placeholder="Suchen…"
+          name="q"
+          aria-label="Suchbegriff"
+        />
+        <button class="icon-btn" type="submit" title="Suchen" aria-label="Suchen">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+  
+      <a class="icon-btn badge-wrap" [routerLink]="['/favoriten']" title="Favoriten" aria-label="Favoriten">
+        <i class="bi bi-heart"></i>
+        <span *ngIf="favCount>0" class="badge">{{ favCount }}</span>
+      </a>
+  
+      <a class="icon-btn badge-wrap" [routerLink]="['/warenkorb']" title="Warenkorb" aria-label="Warenkorb">
+        <i class="bi bi-bag"></i>
+        <span *ngIf="cartCount>0" class="badge">{{ cartCount }}</span>
+      </a>
+    </div>
+  </header>
+  

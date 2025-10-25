@@ -1,9 +1,14 @@
-<div class="row g-3" *ngIf="products().length; else empty">
-    <div class="col-6 col-md-4 col-lg-3" *ngFor="let p of products()">
-        <app-product-item [item] = p></app-product-item>
+<div class="products-container container">
+  <div
+    class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center"
+    *ngIf="products().length; else empty"
+  >
+    <div class="col" *ngFor="let p of products()">
+      <app-product-item class="h-100 d-flex" [item]="p"></app-product-item>
     </div>
   </div>
 
   <ng-template #empty>
     <div class="text-muted">Keine Produkte gefunden.</div>
   </ng-template>
+</div>
