@@ -4,123 +4,96 @@ import { NgIf, NgFor } from '@angular/common';
 import { Router } from '@angular/router';
 import { CartService } from '../../../core/services/cart.service';
 import { PricePipe } from '../../../shared/pipes/price.pipes';
-import { OrderMailService } from '../../../core/services/orderMail.service';
+import { OrderMailService, OrderPayload } from '../../../core/services/orderMail.service';
+import { ToastService } from '../../../core/services/toast.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-checkout.page',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgFor, PricePipe],
+  imports: [ReactiveFormsModule, NgIf, NgFor, PricePipe, RouterLink],
   templateUrl: './checkout.page.component.html',
   styleUrl: './checkout.page.component.css'
 })
-export class CheckoutPageComponent implements OnInit {
-  selectedPayment: string | null = null;
-  isSubmitting = false;
-  items:any = [];
-
+export class CheckoutPageComponent {
   private fb = inject(FormBuilder);
-  private router = inject(Router);
-  cart = inject(CartService);
+  private cart = inject(CartService);
+  private ordermail = inject(OrderMailService);
+  private toast = inject(ToastService);
 
-  constructor(private orderMail: OrderMailService) {}
-
-  ngOnInit(): void {
-    console.log(this.cart.items())
-    this.items = this.cart.items()
-    console.log(this.items)
-    
-  }
+  pending = false;
 
   form = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    address: ['', Validators.required],
-    zip: ['', Validators.required],
-    city: ['', Validators.required],
-    payment: ['card', Validators.required]
+    address: [''],
+    zip: [''],
+    city: [''],
+    payment: ['PayPal', Validators.required]
   });
 
-  hasItems = computed(() => this.cart.items().length > 0);
+  get items() {
+    // [{ product: Product, qty: number }]  ->  [{id,name,qty,price}]
+    return this.cart.items().map((ci: { product: any; qty: number }) => ({
+      id: ci.product.id,
+      name: ci.product.name,
+      qty: ci.qty,
+      price: ci.product.price
+    }));
+  }
 
-    // Beispiel-Daten (ersetzt du mit deinen echten)
-    order = {
-      orderId: 'A-2025-0001',
-      email: this.form.get('email')?.value,
-      firstName: this.form.get('firstName')?.value,
-      lastName: this.form.get('lastName')?.value,
-      address: this.form.get('address')?.value,
-      zip: this.form.get('zip')?.value,
-      city: this.form.get('city')?.value,
-      items: [
-        { name: 'Hoodie Grau', qty: 1, price: 49.99 },
-        { name: 'Cap Navy', qty: 1, price: 24.99 },
-      ],
-      subtotal: 74.98,
-      shipping: 4.99,
-      total: 79.97,
+  get totals() {
+    // Falls dein CartService nur total() hat:
+    const subtotal = this.cart.total();   // Summe der Positionen
+    const shipping = 0;                   // ggf. dynamisch setzen
+    const total = subtotal + shipping;
+    return { subtotal, shipping, total };
+  }
+
+  hasItems(): boolean {
+  const items = this.cart.items();
+  return Array.isArray(items) && items.length > 0;
+  }
+
+  invalid(controlName: string): boolean {
+    const control = this.form.get(controlName);
+    return !!(control && control.invalid && (control.dirty || control.touched));
+  }
+
+  async submit() {
+    if (this.pending) return;
+
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      this.toast.show('Bitte Formular vervollständigen.', 'warning');
+      return;
+    }
+
+    this.pending = true;
+
+    const payload: OrderPayload = {
+      customer: {
+        firstName: this.form.value.firstName!,
+        lastName:  this.form.value.lastName!,
+        email:     this.form.value.email!,
+        address:   this.form.value.address || '',
+        zip:       this.form.value.zip || '',
+        city:      this.form.value.city || '',
+        payment:   this.form.value.payment || ''
+      },
+      items: this.items.map(i => ({ id: i.id, name: i.name, qty: i.qty, price: i.price })),
+      totals: this.totals
     };
 
-  invalid(name: string) {
-    const c = this.form.get(name);
-    return !!c && c.invalid && (c.dirty || c.touched);
-  }
-
-  submit() {
-    if (this.form.invalid) return;
-    // Hier würdest du später eine Order erzeugen + Stripe Session anfragen
-    alert('Danke! Bestellung erstellt (Demo).');
-    this.cart.clear();
-    this.router.navigateByUrl('/'); // zurück zum Shop / Danke-Seite etc.
-  }
-
-  addPayment() {
-    if (this.selectedPayment === 'paypal') {
-      // TODO: PayPal-Flow
-    } else if (this.selectedPayment === 'klarna') {
-      // TODO: Klarna-Flow
-    }
-  }
-
-  onCheckout() {
-    if (this.isSubmitting) return;
-    this.isSubmitting = true;
-
-
-
-    this.orderMail.sendOrderConfirmation(this.order).subscribe({
-      next: (res) => {
-        console.log('✅ Mail gesendet:', res);
-        alert('Bestellbestätigung gesendet!');
+    this.ordermail.sendOrderConfirmation(payload).subscribe({
+      next: () => {
+        this.toast.show('Bestellbestätigung per E-Mail versendet.', 'success');
+        //this.cart.clear();
       },
-      error: (err) => {
-        console.error('❌ Fehler beim Mailversand', err);
-        alert('E-Mail-Versand fehlgeschlagen.');
-      },
-      complete: () => (this.isSubmitting = false),
+      error: () => this.toast.show('E-Mail Versand fehlgeschlagen.', 'danger'),
+      complete: () => (this.pending = false)
     });
   }
-
-  setOrder() {
-    this.order = {
-      orderId: 'A-2025-0001',
-      email: this.form.get('email')?.value,
-      firstName: this.form.get('firstName')?.value,
-      lastName: this.form.get('lastName')?.value,
-      address: this.form.get('address')?.value,
-      zip: this.form.get('zip')?.value,
-      city: this.form.get('city')?.value,
-      /*items: [
-        { name: 'Hoodie Grau', qty: 1, price: 49.99 },
-        { name: 'Cap Navy', qty: 1, price: 24.99 },
-      ],*/
-      items: this.items,
-      subtotal: 74.98,
-      shipping: 4.99,
-      total: 79.97,
-    };
-  }
-
-
-
 }

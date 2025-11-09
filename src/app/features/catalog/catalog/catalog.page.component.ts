@@ -28,6 +28,7 @@ export class CatalogPageComponent {
 
     const route = inject(ActivatedRoute);
     route.paramMap.subscribe(pm => this.slug.set((pm.get('slug') ?? '').toLowerCase()));
+    console.log('catalog')
 
   }
 

@@ -25,7 +25,11 @@ export class ProductPageComponent {
 
   constructor() {
     const id = this.route.snapshot.paramMap.get('id')!;
-    this.api.getProduct(id).subscribe(p => this.product = p);
+    console.log(id,'Id');
+    this.api.getProduct(id).subscribe(p => {
+      this.product = p;
+      console.log(p,'P')
+    });
   }
 
   add() {

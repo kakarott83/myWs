@@ -3,7 +3,7 @@ import { Injectable, signal } from '@angular/core';
 export interface Toast {
   id: number;
   message: string;
-  type?: 'success' | 'info' | 'danger';
+  type?: 'success' | 'info' | 'danger' | 'warning';
   enter?: boolean;   // ⬅️ für Fade-in
   hiding?: boolean;  // ⬅️ für Fade-out
 }
@@ -13,7 +13,7 @@ export class ToastService {
   private listSig = signal<Toast[]>([]);
   readonly toasts = this.listSig.asReadonly();
 
-  show(message: string, type: 'success' | 'info' | 'danger' = 'success', ms = 1000) {
+  show(message: string, type: 'success' | 'info' | 'danger' | 'warning' = 'success', ms = 1000) {
     const toast: Toast = { id: Date.now(), message, type, enter: false, hiding: false };
     this.listSig.update(list => [...list, toast]);
   

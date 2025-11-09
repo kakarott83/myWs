@@ -32,9 +32,9 @@
         <span *ngIf="favCount>0" class="badge">{{ favCount }}</span>
       </a>
   
-      <a class="icon-btn badge-wrap" [routerLink]="['/warenkorb']" title="Warenkorb" aria-label="Warenkorb">
+      <a class="icon-btn badge-wrap" [routerLink]="['/cart']" title="Warenkorb" aria-label="Warenkorb">
         <i class="bi bi-bag"></i>
-        <span *ngIf="cartCount>0" class="badge">{{ cartCount }}</span>
+        <span *ngIf="c.count() > 0" class="badge">{{ c.count() }}</span>
       </a>
     </div>
   </header>

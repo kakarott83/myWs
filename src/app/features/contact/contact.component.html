@@ -1,0 +1,55 @@
+<section class="container py-5">
+  <h2 class="mb-4 text-center">Kontakt</h2>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <form class="vstack gap-3" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <!-- Honeypot (versteckt) -->
+    <input formControlName="website" tabindex="-1" autocomplete="off" class="d-none" aria-hidden="true">
+
+    <div>
+      <label class="form-label">Name</label>
+      <input class="form-control" formControlName="name" [class.is-invalid]="touched('name') && form.controls.name.invalid">
+      <div class="invalid-feedback" *ngIf="touched('name') && form.controls.name.errors?.['required']">
+        Name ist erforderlich.
+      </div>
+      <div class="invalid-feedback" *ngIf="touched('name') && form.controls.name.errors?.['maxlength']">
+        Maximal 120 Zeichen.
+      </div>
+    </div>
+
+    <div>
+      <label class="form-label">E-Mail</label>
+      <input type="email" class="form-control" formControlName="email" [class.is-invalid]="touched('email') && form.controls.email.invalid">
+      <div class="invalid-feedback" *ngIf="touched('email') && form.controls.email.errors?.['required']">
+        E-Mail ist erforderlich.
+      </div>
+      <div class="invalid-feedback" *ngIf="touched('email') && form.controls.email.errors?.['email']">
+        Bitte eine gültige E-Mail eingeben.
+      </div>
+    </div>
+
+    <div>
+      <label class="form-label">Nachricht</label>
+      <textarea rows="5" class="form-control" formControlName="message"
+        [class.is-invalid]="touched('message') && form.controls.message.invalid"></textarea>
+      <div class="invalid-feedback" *ngIf="touched('message') && form.controls.message.errors?.['required']">
+        Nachricht ist erforderlich.
+      </div>
+      <div class="invalid-feedback" *ngIf="touched('message') && form.controls.message.errors?.['maxlength']">
+        Maximal 5000 Zeichen.
+      </div>
+    </div>
+
+    <button class="btn btn-primary"
+            type="submit"
+            [disabled]="loading() || form.invalid">
+      <span *ngIf="!loading()">Nachricht senden</span>
+      <span *ngIf="loading()">Senden…</span>
+    </button>
+  </form>
+    </div>
+  </div>
+</section>
+
+
+

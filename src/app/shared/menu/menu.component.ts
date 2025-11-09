@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { CartService } from '../../core/services/cart.service';
 
 
 @Component({
@@ -11,6 +12,9 @@ import { NgIf } from '@angular/common';
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
+  c = inject(CartService);
+
+
   /** Shop-/Seitenname in der Mitte */
   @Input() brand = 'DesertStore';
 

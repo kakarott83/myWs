@@ -10,7 +10,9 @@ export const routes: Routes = [
     { path: 'philosophie/steine-und-bedeutung', loadComponent: () => import('./features/stone/stone.component').then(m => m.StoneComponent) },
     { path: 'shop', loadComponent: () => import('./features/catalog/catalog/catalog.page.component').then(m => m.CatalogPageComponent) },
     { path: 'shop/:slug', loadComponent: () => import('./features/catalog/catalog/catalog.page.component').then(m => m.CatalogPageComponent) },
+    { path: 'shop/detail/:id', loadComponent: () => import('./features/catalog/product/product.page.component').then(m => m.ProductPageComponent) },
     { path: 'cart', loadComponent: () => import('./features/cart/cart.page.component').then(m => m.CartPageComponent) },
     { path: 'checkout', loadComponent: () => import('./features/checkout/checkout.page/checkout.page.component').then(m => m.CheckoutPageComponent) },
+    { path: 'kontakt', loadComponent: () => import('./features/contact/contact.component').then(m => m.ContactComponent) },
     { path: '**', redirectTo: '' }
 ];

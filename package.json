@@ -7,8 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev:api": "json-server --watch db.json --port 4300",
-    "dev": "concurrently \"npm run dev:api\" \"ng serve\""
+    "dev": "concurrently \"npm:dev:client\" \"npm:dev:server\" \"npm:dev:products\"",
+    "dev:client": "ng serve --proxy-config proxy.conf.json",
+    "dev:server": "ts-node-dev --transpile-only --respawn server/index.ts",
+    "dev:products": "json-server --watch db.json --port 4300"
   },
   "private": true,
   "dependencies": {
@@ -23,8 +25,15 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "nodemailer": "^7.0.10",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "zod": "^4.1.12",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
@@ -32,6 +41,7 @@
     "@angular/cli": "^19.0.6",
     "@angular/compiler-cli": "^19.0.0",
     "@types/jasmine": "~5.1.0",
+    "@types/nodemailer": "^7.0.3",
     "concurrently": "^9.2.1",
     "jasmine-core": "~5.4.0",
     "json-server": "^1.0.0-beta.3",
@@ -40,6 +50,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ts-node-dev": "^2.0.0",
     "typescript": "~5.6.2"
   }
 }

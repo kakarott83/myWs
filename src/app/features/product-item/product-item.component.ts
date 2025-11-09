@@ -21,6 +21,10 @@ export class ProductItemComponent {
 
   @Input() item!: Product;
 
+  constructor() {
+    console.log(this.item,'app-product-item')
+  }
+
   add() {
     if (this.item) {
       this.cart.add(this.item, 1);

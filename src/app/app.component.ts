@@ -11,7 +11,7 @@ import { MenuComponent } from './shared/menu/menu.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, MenuComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, MenuComponent,ToastContainerComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 
