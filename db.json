@@ -1,15 +1,105 @@
 {
-    "products": [
-      { "id": "p1", "name": "T-Shirt Schwarz", "description": "Klassisches Shirt", "category":"armreif-liebe", "price": 1999, "imageFront": "assets/frau_mit_armreif.webp", "imageBack": "assets/armreif.png", "stock": 20 },
-      { "id": "p2", "name": "Hoodie Grau", "description": "Bequem & warm","category":"armreif-liebe", "price": 4999, "imageFront": "https://picsum.photos/id/22/600/400", "imageBack": "https://picsum.photos/id/21/600/400", "stock": 15 },
-      { "id": "p3", "name": "Cap Navy", "description": "Unisex Cap","category":"armreif-liebe", "price": 2499, "imageFront": "https://picsum.photos/id/23/600/400", "imageBack": "https://picsum.photos/id/21/600/400", "stock": 30 },
-      { "id": "p2", "name": "Hoodie Grau", "description": "Bequem & warm","category":"raeucherwerk", "price": 4999, "imageFront": "https://picsum.photos/id/22/600/400", "imageBack": "https://picsum.photos/id/21/600/400", "stock": 15 },
-      { "id": "p3", "name": "Cap Navy", "description": "Unisex Cap","category":"raeucherwerk", "price": 2499, "imageFront": "https://picsum.photos/id/23/600/400", "imageBack": "https://picsum.photos/id/21/600/400", "stock": 30 },
-      { "id": "p2", "name": "Hoodie Grau", "description": "Bequem & warm","category":"armreif-sicherheit", "price": 4999, "imageFront": "https://picsum.photos/id/22/600/400", "imageBack": "https://picsum.photos/id/21/600/400", "stock": 15 },
-      { "id": "p3", "name": "Cap Navy", "description": "Unisex Cap","category":"armreif-sicherheit", "price": 2499, "imageFront": "https://picsum.photos/id/23/600/400", "imageBack": "https://picsum.photos/id/21/600/400", "stock": 30 }
-    ],
-    "rest": [
-      { "id": "p2", "name": "Hoodie Grau", "description": "Bequem & warm","category":"raeucherwerk", "price": 4999, "imageFront": "https://picsum.photos/id/22/600/400", "imageBack": "https://picsum.photos/id/21/600/400", "stock": 15 },
-      { "id": "p3", "name": "Cap Navy", "description": "Unisex Cap","category":"armreif-sicherheit", "price": 2499, "imageFront": "https://picsum.photos/id/23/600/400", "imageBack": "https://picsum.photos/id/21/600/400", "stock": 30 }
-    ]
+  "products": [
+    {
+      "id": "p1",
+      "name": "T-Shirt Schwarz",
+      "description": "Klassisches Shirt",
+      "category": "armreif-liebe",
+      "price": 19.99,
+      "imageFront": "assets/frau_mit_armreif.webp",
+      "imageBack": "assets/armreif.png",
+      "stock": 20,
+      "search": "shirt armreif-liebe"
+    },
+    {
+      "id": "p2",
+      "name": "Hoodie Grau",
+      "description": "Bequem & warm",
+      "category": "armreif-liebe",
+      "price": 49.99,
+      "imageFront": "https://picsum.photos/id/22/600/400",
+      "imageBack": "https://picsum.photos/id/21/600/400",
+      "stock": 15,
+      "search": "hoodie grau weich bequem p2 armreif-liebe"
+    },
+    {
+      "id": "p3",
+      "name": "Cap Navy",
+      "description": "Unisex Cap",
+      "category": "armreif-liebe",
+      "price": 24.99,
+      "imageFront": "https://picsum.photos/id/23/600/400",
+      "imageBack": "https://picsum.photos/id/21/600/400",
+      "stock": 30,
+      "search": "cap weich bequem p2 armreif-liebe"
+    },
+    {
+      "id": "p4",
+      "name": "Hoodie Grau",
+      "description": "Bequem & warm",
+      "category": "raeucherwerk",
+      "price": 49.99,
+      "imageFront": "https://picsum.photos/id/22/600/400",
+      "imageBack": "https://picsum.photos/id/21/600/400",
+      "stock": 15,
+      "search": "hoodie grau weich bequem p2 armreif-liebe"
+    },
+    {
+      "id": "p5",
+      "name": "Cap Navy",
+      "description": "Unisex Cap",
+      "category": "raeucherwerk",
+      "price": 24.99,
+      "imageFront": "https://picsum.photos/id/23/600/400",
+      "imageBack": "https://picsum.photos/id/21/600/400",
+      "stock": 30,
+      "search": "cap weich bequem p2 armreif-liebe"
+    },
+    {
+      "id": "p6",
+      "name": "Hoodie Grau",
+      "description": "Bequem & warm",
+      "category": "armreif-sicherheit",
+      "price": 49.99,
+      "imageFront": "https://picsum.photos/id/22/600/400",
+      "imageBack": "https://picsum.photos/id/21/600/400",
+      "stock": 15,
+      "search": "hoodie grau weich bequem p2 armreif-liebe"
+    },
+    {
+      "id": "p7",
+      "name": "Cap Navy",
+      "description": "Unisex Cap",
+      "category": "armreif-sicherheit",
+      "price": 24.99,
+      "imageFront": "https://picsum.photos/id/23/600/400",
+      "imageBack": "https://picsum.photos/id/21/600/400",
+      "stock": 30,
+      "search": "cap weich bequem p2 armreif-liebe"
+    }
+  ],
+  "rest": [
+    {
+      "id": "p2",
+      "name": "Hoodie Grau",
+      "description": "Bequem & warm",
+      "category": "raeucherwerk",
+      "price": 49.99,
+      "imageFront": "https://picsum.photos/id/22/600/400",
+      "imageBack": "https://picsum.photos/id/21/600/400",
+      "stock": 15,
+      "search": "hoodie grau weich bequem p2 armreif-liebe"
+    },
+    {
+      "id": "p3",
+      "name": "Cap Navy",
+      "description": "Unisex Cap",
+      "category": "armreif-sicherheit",
+      "price": 24.99,
+      "imageFront": "https://picsum.photos/id/23/600/400",
+      "imageBack": "https://picsum.photos/id/21/600/400",
+      "stock": 30,
+      "search": "cap weich bequem p2 armreif-liebe"
+    }
+  ]
 }

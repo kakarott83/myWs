@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../core/services/cart.service';
 import { PricePipe } from '../../shared/pipes/price.pipes';
@@ -8,7 +8,7 @@ import { ToastService } from '../../core/services/toast.service';
 @Component({
   selector: 'app-cart.page',
   standalone: true,
-  imports: [NgFor, NgIf, RouterLink, PricePipe],
+  imports: [NgFor, NgIf, RouterLink, PricePipe, JsonPipe],
   templateUrl: './cart.page.component.html',
   styleUrl: './cart.page.component.css'
 })

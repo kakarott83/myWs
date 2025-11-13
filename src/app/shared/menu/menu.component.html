@@ -18,13 +18,17 @@
         <input
           class="search__input"
           type="search"
+          [(ngModel)]="query"
           placeholder="Suchen…"
           name="q"
           aria-label="Suchbegriff"
+          autocomplete="off"
         />
+        <button class="btn" type="button" *ngIf="query" (click)="clear()" aria-label="Zurücksetzen"><i class="bi bi-x"></i></button>
         <button class="icon-btn" type="submit" title="Suchen" aria-label="Suchen">
           <i class="bi bi-search"></i>
         </button>
+        
       </form>
   
       <a class="icon-btn badge-wrap" [routerLink]="['/favoriten']" title="Favoriten" aria-label="Favoriten">

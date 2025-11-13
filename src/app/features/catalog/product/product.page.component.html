@@ -1,4 +1,4 @@
-<div class="container product-detail" *ngIf="product as item; else loading">
+<div class="container product-detail" *ngIf="!loading() && product() as item; else spinner">
   <div class="row g-4 justify-content-center text-center">
     <div class="col-md-6">
       <div class="image-hover">
@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<ng-template #loading>
+<ng-template #spinner>
   <div class="text-center">
     <div class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>

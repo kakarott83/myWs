@@ -138,7 +138,7 @@ transporter.verify((err, success) => {
 // });
 
 
-
+/*E-Mail Versand für Kontakt Formular*/
 app.post('/api/mail', async (req, res) => {
   const { name, email, message } = req.body ?? {};
   if (!name || !email || !message) {
@@ -155,13 +155,14 @@ app.post('/api/mail', async (req, res) => {
       replyTo: `${name} <${email}>`
     });
 
-    res.json({ ok: true, id: info.messageId });
+    return res.json({ ok: true, id: info.messageId });
   } catch (err) {
     console.error('Mail send error:', err);
-    res.status(500).json({ ok: false, error: 'Versand fehlgeschlagen' });
+    return res.status(500).json({ ok: false, error: 'Versand fehlgeschlagen' });
   }
 });
 
+/*E-Mail Versand für Bestellbestätigung Formular*/
 app.post('/api/mail/send-order-confirmation', async (req, res) => {
   const order = req.body as OrderPayload;
   if (!order?.customer?.email || !order?.items?.length) {
@@ -180,10 +181,10 @@ app.post('/api/mail/send-order-confirmation', async (req, res) => {
       subject,
       html,
     });
-    res.json({ ok: true });
+    return res.json({ ok: true });
   } catch (err) {
     console.error('sendMail failed:', err);
-    res.status(500).json({ error: 'send-failed' });
+    return res.status(500).json({ error: 'send-failed' });
   }
 });
 

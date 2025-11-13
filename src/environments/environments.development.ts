@@ -1,0 +1,4 @@
+export const environment = {
+  supabaseUrl: 'https://hflptuquyptpqjxwqeze.supabase.co',
+  supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmbHB0dXF1eXB0cHFqeHdxZXplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3OTk0MDMsImV4cCI6MjA3ODM3NTQwM30.hHBdNteUXESYjttoXUOQ_Fhsq3EuQvaqg5i4lyVuENw',
+};

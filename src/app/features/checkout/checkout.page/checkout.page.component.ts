@@ -1,3 +1,4 @@
+import { isDevMode } from '@angular/core';
 import { Component, inject, computed, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { NgIf, NgFor } from '@angular/common';
@@ -20,6 +21,7 @@ export class CheckoutPageComponent {
   private cart = inject(CartService);
   private ordermail = inject(OrderMailService);
   private toast = inject(ToastService);
+  private router = inject(Router);
 
   pending = false;
 
@@ -90,10 +92,26 @@ export class CheckoutPageComponent {
     this.ordermail.sendOrderConfirmation(payload).subscribe({
       next: () => {
         this.toast.show('Bestellbestätigung per E-Mail versendet.', 'success');
-        //this.cart.clear();
+        this.cart.clear();
+        this.router.navigate(['/danke']);
       },
       error: () => this.toast.show('E-Mail Versand fehlgeschlagen.', 'danger'),
       complete: () => (this.pending = false)
     });
   }
+
+    /** Dev: Formular mit Beispieldaten füllen */
+  fillDemo() {
+    this.form.patchValue({
+      firstName: 'Max',
+      lastName: 'Mustermann',
+      email: 'info@a-vora.com',
+      address: 'Musterstraße 12',
+      zip: '12345',
+      city: 'Musterstadt',
+      payment: 'PayPal'
+    });
+  }
+
+
 }

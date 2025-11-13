@@ -11,7 +11,7 @@ export class PricePipe implements PipeTransform {
 
   transform(cents: number, currency: string = '€'): string {
     if (cents == null) return ''; // Falls kein Wert vorhanden ist
-    const value = (cents / 100).toFixed(2).replace('.', ','); // Komma statt Punkt
+    const value = (cents).toFixed(2).replace('.', ','); // Komma statt Punkt
     return `${value}\u00A0${currency}`; // \u00A0 = geschütztes Leerzeichen
   }
 }

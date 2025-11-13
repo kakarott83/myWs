@@ -8,4 +8,5 @@ export interface Product {
     category?: string;
     sku?: string;
     stock?: number;
+    slug?: string;
   }

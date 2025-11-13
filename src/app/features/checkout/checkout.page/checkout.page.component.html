@@ -93,11 +93,16 @@
           </div>
 
           
-          <button type="submit" [disabled]="pending" class="btn btn-primary btn-lg w-100 mt-3 d-flex align-items-center justify-content-center gap-2">
+          <button type="submit" [disabled]="pending" [disabled]="form.invalid" class="btn btn-primary btn-lg w-100 mt-3 d-flex align-items-center justify-content-center gap-2">
             <img src="assets/logo/checkout-confirm.svg" alt="" height="20">
             <span>Zahlungspflichtig bestellen</span>
           </button>
+
         </form>
+          <button (click)="fillDemo()" class="btn btn-primary btn-lg w-100 mt-3 d-flex align-items-center justify-content-center gap-2">
+            <img src="assets/logo/checkout-confirm.svg" alt="" height="20">
+            <span>Daten ausfüllen</span>
+          </button>
       </div>
 
       <!-- Zusammenfassung -->

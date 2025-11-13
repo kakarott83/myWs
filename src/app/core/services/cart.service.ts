@@ -7,7 +7,7 @@ export class CartService {
 
   readonly items = computed(() => Object.values(this.itemsSig()));
   readonly subtotal = computed(() => this.items().reduce((s,i)=> s + i.product.price * i.qty, 0));
-  readonly shipping = computed(() => (this.subtotal() > 5000 ? 0 : 499));
+  readonly shipping = computed(() => (this.subtotal() > 5000 ? 0 : 4.99)); /*Wenn Preis über schwelle, dann versankosten*/
   readonly total = computed(() => this.subtotal() + this.shipping());
   readonly count = computed(() => this.items().reduce((n,i)=> n + i.qty, 0)); // 👈 NEU
   readonly displayCount = computed(() => {
@@ -16,6 +16,7 @@ export class CartService {
   });
 
   add(p: Product, qty = 1) {
+    console.log(p,'P')
     const m = { ...this.itemsSig() };
     m[p.id] = { product: p, qty: (m[p.id]?.qty ?? 0) + qty };
     this.itemsSig.set(m);

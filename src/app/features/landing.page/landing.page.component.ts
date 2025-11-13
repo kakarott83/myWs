@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-landing.page',
-  imports: [ProductItemComponent, NgIf, NgFor],
+  imports: [],
   templateUrl: './landing.page.component.html',
   styleUrl: './landing.page.component.css'
 })
@@ -14,10 +14,10 @@ export class LandingPageComponent implements OnInit {
   products = signal<any[]>([]);
 
   constructor() {
-    this.api.getProducts().subscribe({
+  /*  this.api.getProducts().subscribe({
       next: res => this.products.set(res),
       error: err => console.error('getProducts error', err)
-    });
+    });*/
   }
 
 

@@ -13,6 +13,7 @@ export const routes: Routes = [
     { path: 'shop/detail/:id', loadComponent: () => import('./features/catalog/product/product.page.component').then(m => m.ProductPageComponent) },
     { path: 'cart', loadComponent: () => import('./features/cart/cart.page.component').then(m => m.CartPageComponent) },
     { path: 'checkout', loadComponent: () => import('./features/checkout/checkout.page/checkout.page.component').then(m => m.CheckoutPageComponent) },
+    { path: 'danke', loadComponent: () => import('./features/thank-you/thank-you.component').then(m => m.ThankYouComponent) },
     { path: 'kontakt', loadComponent: () => import('./features/contact/contact.component').then(m => m.ContactComponent) },
     { path: '**', redirectTo: '' }
 ];
